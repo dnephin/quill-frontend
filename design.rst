@@ -23,4 +23,10 @@ the primary focus of this view.
 See `<mockups/feedback-view-1.html>`_
 
 
+Thread View
+-----------
 
+In this view most of document is hidden, only the active section is visible. A 
+single thread of feedback and responses to feedback are visible, back to the
+original section of the document. The thread is the path through the tree from
+a leaf to the root in the document.
