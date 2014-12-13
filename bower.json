@@ -1,0 +1,22 @@
+{
+  "name": "quill-frontend",
+  "version": "0.1.0",
+  "authors": [
+    "Daniel Nephin <dnephin@gmail.com>"
+  ],
+  "license": "BSD",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+  },
+  "devDependencies": {
+    "bootstrap": "~3.3.1",
+    "react": "~0.12.1"
+  }
+}
