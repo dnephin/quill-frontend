@@ -14,6 +14,6 @@ RUN     ln -s /usr/bin/nodejs /usr/local/bin/node
 
 RUN     npm -g install \
             bower \
-            gulp
-
+            gulp \
+            coffee-script
 
