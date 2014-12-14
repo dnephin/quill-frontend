@@ -6,11 +6,12 @@
 
   <link href="bootstrap/dist/css/bootstrap.css" rel="stylesheet">
   <!-- TODO: move JS to bottom of the page -->
-  <script src="react/react.js"></script>
-  <script src="react-router/dist/react-router.js"></script>
+  <script src="/react/react.js"></script>
+  <script src="/react/JSXTransformer.js"></script>
+  <script src="/react-router/dist/react-router.js"></script>
   <!-- TODO: remove jquery dependency -->
-  <script src="jquery/dist/jquery.js"></script>
-  <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/jquery/dist/jquery.js"></script>
+  <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="http://172.17.0.3:35729/livereload.js"></script>
 
   <style>
@@ -34,100 +35,10 @@
     </div>
   </nav>
 
-  <div class="container">
+  <div class="container" id="content">
 
-      <!-- statement -->
-      <div class="row statement section">
-        <div class="col-md-12">
-           <p>Statement section referenced at the top of the tree </p>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12 summary">
-          Summarized feedback parents
-        </div>
-      </div>
-
-      <!-- immediate parent feedback -->
-      <div class="row focus-parent">
-        <div class="col-md-1 author">
-          Author
-        </div>
-        <div class="col-md-9">
-          Parent comment
-        </div>
-        <div class="col-md-2">
-          Parent summary
-        </div>
-      </div>
-
-      <!-- focused comment -->
-      <div class="row focus-comment">
-        <div class="col-md-1 author">
-            Author
-        </div>
-        <div class="col-md-11">
-          Focus comment
-
-          <div class="reply">
-          Reply here
-          </div>
-        </div>
-      </div>
-
-      <!-- child comments -->
-      <div class="row focus-children">
-        <div class="col-md-9">
-          <div class="row"> 
-            <div class="col-md-12 summary">
-              Child list details 
-            </div>
-          </div>
-
-          <!-- child one -->
-          <div class="row focus-children">
-            <div class="col-md-1 author author-mini">
-              Author
-            </div>
-            <div class="col-md-10">
-              Child comment
-            </div>
-            <div class="col-md-1">
-              mini summary
-            </div>
-          </div>
-          <!-- child two -->
-          <div class="row focus-children">
-            <div class="col-md-1 author author-mini">
-              Author
-            </div>
-            <div class="col-md-10">
-              Child comment
-            </div>
-            <div class="col-md-1">
-              mini summary
-            </div>
-          </div>
-          <!-- child three -->
-          <div class="row focus-children">
-            <div class="col-md-1 author author-mini">
-              Author
-            </div>
-            <div class="col-md-10">
-              Child comment
-            </div>
-            <div class="col-md-1">
-              mini summary
-            </div>
-          </div>
-        </div>
-        <!-- focused summary -->
-        <div class="col-md-3 focus-summary">
-          Focus summary
-        </div>
-      </div>
 
     </div>
+    <script type="text/jsx;harmony=true" src="/js/app.jsx"></script>
   </body>
 </html>

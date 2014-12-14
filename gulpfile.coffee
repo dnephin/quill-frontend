@@ -4,7 +4,7 @@ gutuil      = require('gulp-util')
 bowerFiles  = require('main-bower-files')
 path        = require('path')
 del         = require('del')
-lrhttp     = require('lr-http-server')
+lrhttp      = require('lr-http-server')
 
 
 paths =
@@ -24,6 +24,7 @@ gulp.task 'clean', ->
 gulp.task 'build', ['static', 'bower']
 
 
+# TODO: gulp-changed if things get slow
 gulp.task 'watch', ->
     gulp.watch(paths.static, ['static'])
 
@@ -32,10 +33,12 @@ gulp.task 'bower', ->
     gulp.src(bowerFiles(), base: paths.bower)
         .pipe(gulp.dest(paths.dist))
 
+    gulp.src('bower_components/react/JSXTransformer.js', base: 'bower_components')
+        .pipe(gulp.dest(paths.dist))
+
 
 gulp.task 'static', ->
     gulp.src(paths.static).pipe(gulp.dest(paths.dist))
-
 
 
 gulp.task 'dev', ->
