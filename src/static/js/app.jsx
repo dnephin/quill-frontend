@@ -3,10 +3,11 @@
 var StatementSectionUnderReview = React.createClass({
 
   render: function() {
+    console.log(this.props)
     return (
       <div className="row statement section">
         <div className="col-md-12">
-           <p>Statement section referenced at the top of the tree </p>
+           <p>{this.props.statement}</p>
         </div>
       </div>
     );
@@ -16,10 +17,21 @@ var StatementSectionUnderReview = React.createClass({
 
 var FeedbackViewRoute = React.createClass({
 
+  getInitialState: function() {
+    return {};
+  },
+
+  componentDidMount: function() {
+    reqwest('/data/loomio.json').then(function (resp) {
+      console.log(resp);
+      this.setState(resp);
+    }.bind(this));
+  },
+
   render: function() {
     return (
       <div>
-      <StatementSectionUnderReview />
+      <StatementSectionUnderReview statement={this.state.statement}/>
       <div className="row">
         <div className="col-md-12 summary">
           Summarized feedback parents

@@ -4,7 +4,8 @@
   "description": "Web frontend for quill",
   "main": "index.js",
   "dependencies": {
-    "quill-data-format": "~0.1.0"
+    "quill-data-format": "~0.1.0",
+    "reqwest": "^1.1.5"
   },
   "devDependencies": {
     "bower": "~1.3.12",

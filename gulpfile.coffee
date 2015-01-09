@@ -21,7 +21,7 @@ gulp.task 'clean', ->
     del [ 'dist/' ]
 
 
-gulp.task 'build', ['static', 'bower']
+gulp.task 'build', ['static', 'bower', 'npmcopy']
 
 
 # TODO: gulp-changed if things get slow
@@ -34,6 +34,10 @@ gulp.task 'bower', ->
         .pipe(gulp.dest(paths.dist))
 
     gulp.src('bower_components/react/JSXTransformer.js', base: 'bower_components')
+        .pipe(gulp.dest(paths.dist))
+
+gulp.task 'npmcopy', ->
+    gulp.src('node_modules/reqwest/reqwest.min.js', base: 'node_modules')
         .pipe(gulp.dest(paths.dist))
 
 
