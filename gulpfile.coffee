@@ -1,6 +1,8 @@
 
 gulp        = require('gulp')
-gutuil      = require('gulp-util')
+coffee      = require('gulp-coffee')
+cjsx        = require('gulp-cjsx')
+gutil       = require('gulp-util')
 bowerFiles  = require('main-bower-files')
 path        = require('path')
 del         = require('del')
@@ -11,6 +13,7 @@ paths =
     dist: './dist'
     static: ['src/static/**']
     bower: path.join(__dirname, 'bower_components/')
+    cjsx: ['src/cjsx/**']
 
 ports =
     dev: 8999
@@ -21,11 +24,12 @@ gulp.task 'clean', ->
     del [ 'dist/' ]
 
 
-gulp.task 'build', ['static', 'bower', 'npmcopy']
+gulp.task 'build', ['static', 'bower', 'npmcopy', 'cjsx']
 
 
 # TODO: gulp-changed if things get slow
 gulp.task 'watch', ->
+    gulp.watch(paths.cjsx, ['cjsx'])
     gulp.watch(paths.static, ['static'])
 
 
@@ -36,6 +40,7 @@ gulp.task 'bower', ->
     gulp.src('bower_components/react/JSXTransformer.js', base: 'bower_components')
         .pipe(gulp.dest(paths.dist))
 
+
 gulp.task 'npmcopy', ->
     gulp.src('node_modules/reqwest/reqwest.min.js', base: 'node_modules')
         .pipe(gulp.dest(paths.dist))
@@ -45,6 +50,16 @@ gulp.task 'static', ->
     gulp.src(paths.static).pipe(gulp.dest(paths.dist))
 
 
-gulp.task 'dev', ->
+gulp.task 'cjsx', ->
+    onError = (err) -> gutil.log(err.toString())
+
+    gulp.src(paths.cjsx)
+        .pipe(cjsx(base: true).on('error', onError))
+        .pipe(gulp.dest(paths.dist))
+
+
+gulp.task 'livereload', ->
     lrhttp(ports.dev, './dist', ports.livereload, null, true)
-    gulp.run 'watch'
+
+
+gulp.task 'dev', ['build', 'livereload', 'watch']

@@ -1,8 +1,8 @@
 
 
-var StatementSectionUnderReview = React.createClass({
+StatementSectionUnderReview = React.createClass({
 
-  render: function() {
+  render: ->
     console.log(this.props)
     return (
       <div className="row statement section">
@@ -11,25 +11,22 @@ var StatementSectionUnderReview = React.createClass({
         </div>
       </div>
     );
-  }
 });
 
 
-var FeedbackViewRoute = React.createClass({
 
-  getInitialState: function() {
-    return {};
-  },
+FeedbackViewRoute = React.createClass({
 
-  componentDidMount: function() {
-    reqwest('/data/loomio.json').then(function (resp) {
-      console.log(resp);
-      this.setState(resp);
-    }.bind(this));
-  },
+  getInitialState: ->
+    {}
 
-  render: function() {
-    return (
+  componentDidMount: ->
+    reqwest('/data/loomio.json').then (resp) =>
+      console.log(resp)
+      this.setState(resp)
+
+  render: ->
+    (
       <div>
       <StatementSectionUnderReview statement={this.state.statement}/>
       <div className="row">
@@ -89,13 +86,14 @@ var FeedbackViewRoute = React.createClass({
         </div>
       </div>
       </div>
-    );
-  }
+    )
 });
 
 
-// TODO: router
+# TODO: router
 React.render(
   <FeedbackViewRoute />,
   document.getElementById('content')
 )
+
+# vi:syntax=coffee
