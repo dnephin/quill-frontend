@@ -13,7 +13,7 @@ paths =
     dist: './dist'
     static: ['src/static/**']
     bower: path.join(__dirname, 'bower_components/')
-    cjsx: ['src/cjsx/**']
+    cjsx: ['src/cjsx/**/*.cjsx']
 
 ports =
     dev: 8999

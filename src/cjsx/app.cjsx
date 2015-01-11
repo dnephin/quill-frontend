@@ -1,34 +1,40 @@
 
 
-StatementSectionUnderReview = React.createClass({
+StatementSectionUnderReview = React.createClass
 
   render: ->
-    console.log(this.props)
-    return (
-      <div className="row statement section">
-        <div className="col-md-12">
-           <p>{this.props.statement}</p>
-        </div>
-      </div>
-    );
-});
+    <div className="row statement section">
+      <Document content={this.props.statement.full} />
+    </div>
 
+
+Document = React.createClass
+
+  render: ->
+    sections = this.props.content.map (section) ->
+      <p data-section-id={section.id} key={section.id}>{section.body}</p>
+
+    <div className="col-md-12 document" >{sections}</div>
 
 
 FeedbackViewRoute = React.createClass({
 
+  # TODO: display an empty page instead of initial empty statement
   getInitialState: ->
-    {}
+    statement: [
+      full: []
+    ]
 
   componentDidMount: ->
     reqwest('/data/loomio.json').then (resp) =>
       console.log(resp)
       this.setState(resp)
 
+  # TODO: use current/latest instead of [0]
   render: ->
     (
       <div>
-      <StatementSectionUnderReview statement={this.state.statement}/>
+      <StatementSectionUnderReview statement={this.state.statement[0]}/>
       <div className="row">
         <div className="col-md-12 summary">
           Summarized feedback parents
