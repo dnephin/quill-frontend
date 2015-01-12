@@ -54,7 +54,7 @@ gulp.task 'cjsx', ->
     onError = (err) -> gutil.log(err.toString())
 
     gulp.src(paths.cjsx)
-        .pipe(cjsx(base: true).on('error', onError))
+        .pipe(cjsx(bare: true).on('error', onError))
         .pipe(gulp.dest(paths.dist))
 
 

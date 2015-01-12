@@ -17,7 +17,7 @@ Document = React.createClass
     <div className="col-md-12 document" >{sections}</div>
 
 
-FeedbackViewRoute = React.createClass({
+FeedbackViewRoute = React.createClass
 
   # TODO: display an empty page instead of initial empty statement
   getInitialState: ->
@@ -32,7 +32,6 @@ FeedbackViewRoute = React.createClass({
 
   # TODO: use current/latest instead of [0]
   render: ->
-    (
       <div>
       <StatementSectionUnderReview statement={this.state.statement[0]}/>
       <div className="row">
@@ -92,14 +91,36 @@ FeedbackViewRoute = React.createClass({
         </div>
       </div>
       </div>
-    )
-});
 
 
-# TODO: router
-React.render(
-  <FeedbackViewRoute />,
-  document.getElementById('content')
-)
+App = React.createClass
+  render: ->
+    <div className="App">
+      <nav className="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div className="container">
+          <div className="navbar-header">
+            <a className="navbar-brand" href="#">Quill</a>
+          </div>
+        </div>
+      </nav>
+
+      <div className="container">
+        <ReactRouter.RouteHandler />
+      </div>
+    </div>
+
+
+Route = ReactRouter.Route
+DefaultRoute = ReactRouter.DefaultRoute
+
+# TODO: NotFoundRoute
+routes =
+  <Route handler={App} path="/">
+    <DefaultRoute handler={FeedbackViewRoute} />
+  </Route>
+
+
+ReactRouter.run routes, (Handler) ->
+  React.render(<Handler/>, document.body)
 
 # vi:syntax=coffee
