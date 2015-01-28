@@ -3,4 +3,10 @@
 Home = React.createClass
 
   render: ->
-    <p>Home</p>
+    <div>
+      <p>Home</p>
+      <ul>
+        <li><Link to="statement">statement</Link></li>
+        <li><Link to="feedback">feedback</Link></li>
+      </ul>
+   </div>

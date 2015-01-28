@@ -1,6 +1,7 @@
 
 Route = ReactRouter.Route
 DefaultRoute = ReactRouter.DefaultRoute
+Link = ReactRouter.Link
 
 # TODO: NotFoundRoute
 routes =

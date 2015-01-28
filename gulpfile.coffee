@@ -1,13 +1,14 @@
 
 gulp        = require('gulp')
-concat      = require('gulp-concat')
-coffee      = require('gulp-coffee')
-cjsx        = require('gulp-cjsx')
-gutil       = require('gulp-util')
 bowerFiles  = require('main-bower-files')
-path        = require('path')
+cjsx        = require('gulp-cjsx')
+coffee      = require('gulp-coffee')
+concat      = require('gulp-concat')
 del         = require('del')
+gutil       = require('gulp-util')
 lrhttp      = require('lr-http-server')
+order       = require('gulp-order')
+path        = require('path')
 
 
 paths =
@@ -62,6 +63,8 @@ gulp.task 'cjsx', ->
 
     gulp.src(paths.cjsx)
         .pipe(cjsx(bare: true).on('error', onError))
+        # Put routes.js at the end of the output
+        .pipe(order(['!routes.js', 'routes.js']))
         .pipe(concat('app.js'))
         .pipe(gulp.dest(paths.dist('js')))
 
