@@ -17,7 +17,7 @@ Document = React.createClass
     <div className="col-md-12 document" >{sections}</div>
 
 
-FeedbackViewRoute = React.createClass
+FeedbackView = React.createClass
 
   # TODO: display an empty page instead of initial empty statement
   getInitialState: ->
@@ -109,18 +109,5 @@ App = React.createClass
       </div>
     </div>
 
-
-Route = ReactRouter.Route
-DefaultRoute = ReactRouter.DefaultRoute
-
-# TODO: NotFoundRoute
-routes =
-  <Route handler={App} path="/">
-    <DefaultRoute handler={FeedbackViewRoute} />
-  </Route>
-
-
-ReactRouter.run routes, (Handler) ->
-  React.render(<Handler/>, document.body)
 
 # vi:syntax=coffee

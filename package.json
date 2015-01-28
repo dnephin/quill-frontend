@@ -14,6 +14,7 @@
     "gulp": "~3.8.10",
     "gulp-cjsx": "^2.0.0",
     "gulp-coffee": "^2.2.0",
+    "gulp-concat": "^2.4.3",
     "gulp-util": "~3.0.1",
     "lr-http-server": "~0.1.1",
     "main-bower-files": "~2.4.1"
