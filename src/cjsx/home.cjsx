@@ -1,6 +1,7 @@
 
+Link = ReactRouter.Link
 
-Home = React.createClass
+HomeView = React.createClass
 
   render: ->
     <div>
@@ -10,3 +11,7 @@ Home = React.createClass
         <li><Link to="feedback">feedback</Link></li>
       </ul>
    </div>
+
+
+window.quill.home =
+    HomeView: HomeView

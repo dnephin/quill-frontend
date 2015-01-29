@@ -62,7 +62,7 @@ gulp.task 'cjsx', ->
     onError = (err) -> gutil.log(err.toString())
 
     gulp.src(paths.cjsx)
-        .pipe(cjsx(bare: true).on('error', onError))
+        .pipe(cjsx().on('error', onError))
         # Put routes.js at the end of the output
         .pipe(order(['!routes.js', 'routes.js']))
         .pipe(concat('app.js'))

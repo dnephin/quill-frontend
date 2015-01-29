@@ -110,4 +110,9 @@ App = React.createClass
     </div>
 
 
+window.quill =
+    app:
+        App: App
+        FeedbackView: FeedbackView
+
 # vi:syntax=coffee
