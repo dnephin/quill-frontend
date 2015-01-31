@@ -6,10 +6,48 @@ Document = React.createClass
   render: ->
     return false if not @props.content
 
-    sections = this.props.content.map (section) ->
-      <p data-section-id={section.id} key={section.id}>{section.body}</p>
+    <div className="col-md-12 document">{
+      @props.content.map (section) ->
+        <DocumentSection content={section} key={section.id} />
+    }</div>
 
-    <div className="col-md-12 document">{sections}</div>
+
+DocumentSection = React.createClass
+  mixins: [ReactRouter.Navigation]
+
+  getInitialState: ->
+    # TODO: handle this so it doesn't have to be repeated
+    style:
+      cursor: "pointer"
+
+  handleMouseOver: ->
+    @setState
+      style:
+        background: "#C5E6D5"
+        cursor: "pointer"
+
+  handleMouseOut: ->
+    @setState
+      style:
+        background: "transparent"
+        cursor: "pointer"
+
+  handleMouseClick: ->
+    @transitionTo('feedback')
+
+  render: ->
+    return false if not @props.content
+
+    section = @props.content
+    <p  data-section-id={section.id}
+        onMouseOver={@handleMouseOver}
+        onMouseOut={@handleMouseOut}
+        onClick={@handleMouseClick}
+        className="document-section"
+        style={@state.style}
+    >
+      {section.body}
+    </p>
 
 
 StatementAuthors = React.createClass
@@ -18,15 +56,14 @@ StatementAuthors = React.createClass
   render: ->
     authors = this.props.authors
 
-    <ul>
-    { authors.map (author) ->
-      <li>
+    <ul>{
+      authors.map (author) ->
+        <li key={author.id}>
           <p>{author.id}</p>
           <p>{author.credit}</p>
           <p>{author.relation}</p>
-      </li>
-    }
-    </ul>
+        </li>
+    }</ul>
 
 
 StatementVersion = React.createClass
@@ -37,7 +74,7 @@ StatementVersion = React.createClass
 
     <div>
       <p><small>Version:</small> {semantic.join('.')}</p>
-      <p><small>Published:</small> {version['published-date']}</p>
+      <p><small>Published:</small> {version.publishedDate}</p>
       <p><small>Details:</small> {version.details}</p>
     </div>
 
