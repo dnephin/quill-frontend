@@ -137,4 +137,4 @@ StatementView = React.createClass
 
 
 window.quill.statement =
-    StatementView: StatementView
+  StatementView: StatementView

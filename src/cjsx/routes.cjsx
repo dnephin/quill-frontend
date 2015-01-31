@@ -12,7 +12,7 @@ routes =
     <Route
         name="feedback"
         path="/feedback/:statement/:section"
-        handler={quill.app.FeedbackView} />
+        handler={quill.feedback.FeedbackView} />
     <DefaultRoute handler={quill.home.HomeView} />
   </Route>
 
