@@ -5,10 +5,14 @@ Document = React.createClass
 
   render: ->
     return false if not @props.content
+    statement = @props.statement
 
     <div className="col-md-12 document">{
       @props.content.map (section) ->
-        <DocumentSection content={section} key={section.id} />
+        <DocumentSection
+          content={section}
+          key={section.id}
+          statement={statement} />
     }</div>
 
 
@@ -33,7 +37,9 @@ DocumentSection = React.createClass
         cursor: "pointer"
 
   handleMouseClick: ->
-    @transitionTo('feedback')
+    @transitionTo('feedback',
+      statement: @props.statement
+      section: @props.content.id)
 
   render: ->
     return false if not @props.content
@@ -54,7 +60,7 @@ StatementAuthors = React.createClass
 
   # TODO: pull full author details for each id
   render: ->
-    authors = this.props.authors
+    authors = @props.authors
 
     <ul>{
       authors.map (author) ->
@@ -69,7 +75,7 @@ StatementAuthors = React.createClass
 StatementVersion = React.createClass
 
   render: ->
-    version = this.props.version
+    version = @props.version
     semantic = version.semantic
 
     <div>
@@ -82,22 +88,22 @@ StatementVersion = React.createClass
 StatementProblem = React.createClass
 
   render: ->
-    document = this.props.document
+    document = @props.document
 
     <div>
       <h2>Problem</h2>
-      <Document content={document} />
+      <Document content={document} statement={@props.statement} />
     </div>
 
 
 StatementSummary = React.createClass
 
   render: ->
-    summary = this.props.document
+    summary = @props.document
 
     <div>
       <h2>Summary</h2>
-      <Document content={summary} />
+      <Document content={summary} statement={@props.statement} />
     </div>
 
 
@@ -107,10 +113,10 @@ StatementView = React.createClass
   # TODO: use current/latest instead of [0]
   componentDidMount: ->
     reqwest('/data/loomio.json').then (resp) =>
-      this.setState(resp.statement[0])
+      @setState(resp.statement[0])
 
   render: ->
-    statement = this.state
+    statement = @state
     return <div>loading statement...</div> if not statement
 
     <div>
@@ -124,9 +130,9 @@ StatementView = React.createClass
           <StatementAuthors authors={statement.authors} />
         </div>
       </div>
-      <StatementProblem document={statement.problem} />
-      <StatementSummary document={statement.summary} />
-      <Document content={statement.full} />
+      <StatementProblem document={statement.problem} statement={statement.label} />
+      <StatementSummary document={statement.summary} statement={statement.label} />
+      <Document content={statement.full} statement={statement.label} />
     </div>
 
 
