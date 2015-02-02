@@ -1,6 +1,5 @@
 
 
-
 Document = React.createClass
 
   render: ->
@@ -136,5 +135,5 @@ StatementView = React.createClass
     </div>
 
 
-window.quill.statement =
+window.quill.view.statement =
   StatementView: StatementView

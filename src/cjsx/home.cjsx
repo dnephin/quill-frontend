@@ -26,5 +26,5 @@ HomeView = React.createClass
    </div>
 
 
-window.quill.home =
+window.quill.view.home =
     HomeView: HomeView

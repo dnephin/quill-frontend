@@ -4,19 +4,22 @@ DefaultRoute = ReactRouter.DefaultRoute
 
 # TODO: NotFoundRoute
 routes =
-  <Route handler={quill.app.App} path="/">
+  <Route handler={quill.view.app.App} path="/">
     <Route
         name="statement"
         path="/statement/:label"
-        handler={quill.statement.StatementView} />
+        handler={quill.view.statement.StatementView} />
     <Route
         name="feedback"
         path="/feedback/:statement/:section"
-        handler={quill.feedback.FeedbackView} />
-    <DefaultRoute handler={quill.home.HomeView} />
+        handler={quill.view.feedback.FeedbackView} />
+    <DefaultRoute handler={quill.view.home.HomeView} />
   </Route>
 
 
-ReactRouter.run routes, (Handler) ->
-  React.render(<Handler/>, document.body)
+window.quill.view.router = ReactRouter.create
+  routes: routes
 
+
+quill.view.router.run (Handler) ->
+  React.render(<Handler/>, document.body)

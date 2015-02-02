@@ -19,21 +19,19 @@ Document = React.createClass
 
 FeedbackView = React.createClass
 
-  # TODO: display an empty page instead of initial empty statement
-  getInitialState: ->
-    statement: [
-      full: []
-    ]
-
   componentDidMount: ->
     reqwest('/data/loomio.json').then (resp) =>
       console.log(resp)
-      this.setState(resp)
+      @setState(resp)
 
   # TODO: use current/latest instead of [0]
   render: ->
-      <div>
-      <StatementSectionUnderReview statement={this.state.statement[0]}/>
+    return false if not @state
+
+    statement = @state.statement[0]
+
+    <div>
+      <StatementSectionUnderReview statement={statement}/>
       <div className="row">
         <div className="col-md-12 summary">
           Summarized feedback parents
@@ -90,8 +88,8 @@ FeedbackView = React.createClass
           Focus summary
         </div>
       </div>
-      </div>
+    </div>
 
 
-window.quill.feedback =
+window.quill.view.feedback =
   FeedbackView: FeedbackView

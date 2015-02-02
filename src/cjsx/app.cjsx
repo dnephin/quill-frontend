@@ -18,7 +18,8 @@ App = React.createClass
 
 
 window.quill =
-  app:
-    App: App
+  view:
+    app:
+      App: App
 
 # vi:syntax=coffee
