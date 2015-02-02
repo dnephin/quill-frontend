@@ -1,37 +1,44 @@
 
 
-StatementSectionUnderReview = React.createClass
+StatementSectionInReview = React.createClass
 
   render: ->
+    console.log @props
+    section = @props.statement.getSection(@props.section)
+
     <div className="row statement section">
-      <Document content={this.props.statement.full} />
+      <DocumentSection content={section} />
     </div>
 
 
-Document = React.createClass
+DocumentSection = React.createClass
 
   render: ->
-    sections = this.props.content.map (section) ->
-      <p data-section-id={section.id} key={section.id}>{section.body}</p>
-
-    <div className="col-md-12 document" >{sections}</div>
+    section = @props.content
+    <p data-section-id={section.id} key={section.id}>{section.body}</p>
 
 
 FeedbackView = React.createClass
+  mixins: [ ReactRouter.State ]
 
   componentDidMount: ->
     reqwest('/data/loomio.json').then (resp) =>
-      console.log(resp)
-      @setState(resp)
+      @setState
+        feedback: resp.feedback
+        statement: new quill.stores.StatementModel(resp.statement[0])
 
   # TODO: use current/latest instead of [0]
   render: ->
     return false if not @state
 
-    statement = @state.statement[0]
+    statement = @state.statement
+    params = @getParams()
 
     <div>
-      <StatementSectionUnderReview statement={statement}/>
+      <StatementSectionInReview
+        statement={statement}
+        section={params.section}
+        />
       <div className="row">
         <div className="col-md-12 summary">
           Summarized feedback parents

@@ -2,6 +2,7 @@
 Route = ReactRouter.Route
 DefaultRoute = ReactRouter.DefaultRoute
 
+# TODO: include version in the urls
 # TODO: NotFoundRoute
 routes =
   <Route handler={quill.view.app.App} path="/">

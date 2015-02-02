@@ -5,6 +5,7 @@ cjsx        = require('gulp-cjsx')
 coffee      = require('gulp-coffee')
 concat      = require('gulp-concat')
 del         = require('del')
+es          = require('event-stream')
 gutil       = require('gulp-util')
 lrhttp      = require('lr-http-server')
 order       = require('gulp-order')
@@ -16,6 +17,7 @@ paths =
     static: ['src/static/**']
     bower: path.join(__dirname, 'bower_components/')
     cjsx: ['src/cjsx/**/*.cjsx']
+    coffee: ['src/coffee/**/*.coffee']
     data: 'data/*.json'
 
 ports =
@@ -27,14 +29,19 @@ gulp.task 'clean', ->
     del [ 'dist/' ]
 
 
-gulp.task 'build', ['static', 'bower', 'npmcopy', 'cjsx', 'examples']
+gulp.task 'build', [
+    'static'
+    'bower'
+    'npmcopy'
+    'coffee'
+    'examples'
+]
 
 
 # TODO: gulp-changed if things get slow
 gulp.task 'watch', ->
-    gulp.watch(paths.cjsx, ['cjsx'])
+    gulp.watch(paths.cjsx.concat(paths.coffee), ['coffee'])
     gulp.watch(paths.static, ['static'])
-
 
 gulp.task 'bower', ->
     gulp.src(bowerFiles(), base: paths.bower)
@@ -58,11 +65,13 @@ gulp.task 'static', ->
     gulp.src(paths.static).pipe(gulp.dest(paths.dist()))
 
 
-gulp.task 'cjsx', ->
+gulp.task 'coffee', ->
     onError = (err) -> gutil.log(err.toString())
 
-    gulp.src(paths.cjsx)
-        .pipe(cjsx().on('error', onError))
+    es.merge(
+            gulp.src(paths.cjsx).pipe(cjsx().on('error', onError)),
+            gulp.src(paths.coffee).pipe(coffee().on('error', onError))
+    )
         # Put routes.js at the end of the output
         .pipe(order(['!routes.js', 'routes.js']))
         .pipe(concat('app.js'))
