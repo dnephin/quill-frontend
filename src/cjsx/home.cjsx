@@ -26,5 +26,5 @@ HomeView = React.createClass
    </div>
 
 
-window.quill.view.home =
-    HomeView: HomeView
+util.namespace 'quill.view.home', (exports) ->
+  exports.HomeView = HomeView

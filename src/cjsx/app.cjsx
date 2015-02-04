@@ -17,9 +17,7 @@ App = React.createClass
     </div>
 
 
-window.quill =
-  view:
-    app:
-      App: App
+util.namespace 'quill.view.app', (exports) ->
+    exports.App = App
 
 # vi:syntax=coffee

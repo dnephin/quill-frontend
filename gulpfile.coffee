@@ -73,7 +73,7 @@ gulp.task 'coffee', ->
             gulp.src(paths.coffee).pipe(coffee().on('error', onError))
     )
         # Put routes.js at the end of the output
-        .pipe(order(['!routes.js', 'routes.js']))
+        .pipe(order(['util.js', '!routes.js', 'routes.js']))
         .pipe(concat('app.js'))
         .pipe(gulp.dest(paths.dist('js')))
 

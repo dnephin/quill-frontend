@@ -1,7 +1,7 @@
 
 
 # TODO: move to utils
-buildObject = (seq, func) ->
+buildObjectFromArray = (seq, func) ->
     obj = {}
     for item in seq
         continue if not item?
@@ -11,7 +11,7 @@ buildObject = (seq, func) ->
 
 class StatementModel
     constructor: (@statement) ->
-        @sections = buildObject(
+        @sections = buildObjectFromArray(
             @statement.problem.concat(@statement.summary, @statement.full),
             (section) -> section.id)
 
@@ -22,3 +22,6 @@ class StatementModel
 # TODO: use namespace function
 window.quill.stores = window.quill.stores || {}
 quill.stores.StatementModel = StatementModel
+
+util.namespace 'quill.stores', (exports) ->
+  exports.StatementModel = StatementModel

@@ -135,5 +135,5 @@ StatementView = React.createClass
     </div>
 
 
-window.quill.view.statement =
-  StatementView: StatementView
+util.namespace 'quill.view.statement', (exports) ->
+  exports.StatementView = StatementView

@@ -98,5 +98,5 @@ FeedbackView = React.createClass
     </div>
 
 
-window.quill.view.feedback =
-  FeedbackView: FeedbackView
+util.namespace 'quill.view.feedback', (exports) ->
+  exports.FeedbackView = FeedbackView

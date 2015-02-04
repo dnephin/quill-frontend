@@ -18,9 +18,13 @@ routes =
   </Route>
 
 
-window.quill.view.router = ReactRouter.create
+router = ReactRouter.create
   routes: routes
 
 
-quill.view.router.run (Handler) ->
+router.run (Handler) ->
   React.render(<Handler/>, document.body)
+
+
+util.namespace 'quill.view.router', (exports) ->
+  exports.router = router
