@@ -37,10 +37,7 @@ DocumentSection = React.createClass
 
   handleMouseClick: ->
     @transitionTo('statement-section-overview',
-      # TODO: use merge
-      label: @props.statement_ref.label
-      version: @props.statement_ref.version
-      section: @props.content.id)
+      util.merge(@props.statement_ref, section: @props.content.id))
 
   render: ->
     return false if not @props.content
