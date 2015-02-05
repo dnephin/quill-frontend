@@ -4,14 +4,14 @@ Document = React.createClass
 
   render: ->
     return false if not @props.content
-    statement = @props.statement
+    statement_ref = @props.statement_ref
 
     <div className="col-md-12 document">{
       @props.content.map (section) ->
         <DocumentSection
           content={section}
           key={section.id}
-          statement={statement} />
+          statement_ref={statement_ref} />
     }</div>
 
 
@@ -36,8 +36,10 @@ DocumentSection = React.createClass
         cursor: "pointer"
 
   handleMouseClick: ->
-    @transitionTo('feedback',
-      statement: @props.statement
+    @transitionTo('statement-section-overview',
+      # TODO: use merge
+      label: @props.statement_ref.label
+      version: @props.statement_ref.version
       section: @props.content.id)
 
   render: ->
@@ -91,7 +93,7 @@ StatementProblem = React.createClass
 
     <div>
       <h2>Problem</h2>
-      <Document content={document} statement={@props.statement} />
+      <Document content={document} statement_ref={@props.statement_ref} />
     </div>
 
 
@@ -102,7 +104,7 @@ StatementSummary = React.createClass
 
     <div>
       <h2>Summary</h2>
-      <Document content={summary} statement={@props.statement} />
+      <Document content={summary} statement_ref={@props.statement_ref} />
     </div>
 
 
@@ -115,8 +117,12 @@ StatementView = React.createClass
       @setState(resp.statement[0])
 
   render: ->
+    return <div>loading statement...</div> if not @state 
     statement = @state
-    return <div>loading statement...</div> if not statement
+    # TODO: make this a property of the model
+    statement_ref =
+      label: statement.label
+      version: statement.version.semantic.join('.')
 
     <div>
       <h1>{statement.title}</h1>
@@ -129,9 +135,9 @@ StatementView = React.createClass
           <StatementAuthors authors={statement.authors} />
         </div>
       </div>
-      <StatementProblem document={statement.problem} statement={statement.label} />
-      <StatementSummary document={statement.summary} statement={statement.label} />
-      <Document content={statement.full} statement={statement.label} />
+      <StatementProblem document={statement.problem} statement_ref={statement_ref} />
+      <StatementSummary document={statement.summary} statement_ref={statement_ref} />
+      <Document content={statement.full} statement_ref={statement_ref} />
     </div>
 
 

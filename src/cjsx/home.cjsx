@@ -7,20 +7,11 @@ HomeView = React.createClass
     <div>
       <p>Home</p>
       <ul>
-        <li><Link
-                to="statement"
-                params={label: "political-use-for-loomio"}
-            >
-            statement
+        <li><Link to="/statement/political-use-for-loomio/latest">
+          statement
         </Link></li>
-        <li><Link
-                to="feedback"
-                params={{
-                    statement: "political-use-for-loomio"
-                    section: "47fabbb1adb"
-                }}
-            >
-            feedback
+        <li><Link to="/statement/political-use-for-loomio/latest/section/47fabbb1adb">
+          statement section overview 
         </Link></li>
       </ul>
    </div>

@@ -15,10 +15,17 @@ DocumentSection = React.createClass
 
   render: ->
     section = @props.content
-    <p data-section-id={section.id} key={section.id}>{section.body}</p>
 
+    <div className="row">
+      <div className="col-md-9">
+        <p>{section.body}</p>
+      </div>
+      <div className="col-md-3">
+        <p>Stats</p> 
+      </div>
+    </div>
 
-FeedbackView = React.createClass
+SectionOverview = React.createClass
   mixins: [ ReactRouter.State ]
 
   componentDidMount: ->
@@ -98,5 +105,5 @@ FeedbackView = React.createClass
     </div>
 
 
-util.namespace 'quill.view.feedback', (exports) ->
-  exports.FeedbackView = FeedbackView
+util.namespace 'quill.view.statement', (exports) ->
+  exports.SectionOverview = SectionOverview
