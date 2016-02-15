@@ -4,25 +4,146 @@
   <meta charset="utf-8">
   <title>Quill</title>
 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <link href="/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="/css/components.css" rel="stylesheet">
   <!-- TODO: move JS to bottom of the page -->
-  <script src="/react/react.js"></script>
-  <script src="/react/JSXTransformer.js"></script>
-  <script src="/react-router/dist/react-router.js"></script>
-  <script src="/reqwest/reqwest.min.js"></script>
   <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js"></' + 'script>')</script>
 
-  <style>
-      div[class^="col-md"] {
-      }
-      div.summary {
-        min-height: 2em;
-      }
-      body { padding-top: 70px; }
-  </style>
-
 </head>
-<body> 
-  <script type="text/jsx;harmony=true" src="/js/app.js"></script>
+<body>
+<div class="container">
+
+<header>
+  <div class="row header">
+    <div class="col-md-1 no-left-buffer">
+      <a href="#/profile">
+        <img src="" alt="Profile photo" class="profile-small" />
+       </a>
+    </div>
+    <div class="col-md-3 col-md-offset-8 text-right">
+      <a href="#">Options</a>
+      <a href="#">Logout</a>
+     </div>
+  </div>
+</header>
+
+  <div class="row doc-author top-buffer">
+    <div class="col-md-1 no-left-buffer">
+      <a href="#/contributor/12345">
+        <img src="" alt="Author photo" class="profile-small" />
+      </a>
+    </div>
+    <div class="cold-md-11">
+      <ul class="list-unstyled">
+        <li>D. Nephin</li>
+        <li></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row doc-problem top-buffer">
+     <div class="col-md-2 feedback-summary">
+      <ul class="list-unstyled list-inline">
+        <li class="qf-support">
+          <button class="btn btn-sm btn-feedback">
+            <i class="fa fa-fw fa-plus"></i> 30
+          </button>
+        </li>
+        <li class="qf-accept">
+          <button class="btn btn-sm btn-feedback">
+            <i class="fa fa-fw fa-check"></i> 5
+          </button>
+        </li>
+        <li class="qf-challenge">
+          <button class="btn btn-sm btn-feedback">
+            <i class="fa fa-fw fa-exclamation"></i> 2
+          </button>
+        </li>
+        <li class="qf-oppose">
+          <button class="btn btn-sm btn-feedback">
+            <i class="fa fa-fw fa-ban"></i> 0
+          </button>
+        </li>
+        <li class="qf-ignore">
+          <button class="btn btn-sm btn-feedback">
+            <i class="fa fa-fw fa-eye-slash"></i> 0
+          </button>
+        </li>
+        <li class="qf-flag">
+          <button class="btn btn-sm btn-feedback">
+            <i class="fa fa-fw fa-flag"></i> 0
+          </button>
+        </li>
+        <li>
+      </ul>
+    </div>
+   
+    <div class="col-md-9">
+      <h1>Platform to Enable Distributed Group Decision Making</h1>
+      <ul class="list-unstyled">
+        <li><strong>Published:</strong> August 16th, 2015 at 11:00</li>
+      </ul>
+    </div>
+
+    <div class="col-md-1 add-feedback">
+      <a href="#">Add Feedback</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2 feedback-summary">
+    </div>
+
+    <div class="col-md-9">
+    </div>
+
+    <div class="col-md-1 add-feedback">
+      <a href="#">Add Feedback</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2 feedback-summary">
+    </div>
+
+    <div class="col-md-9">
+    </div>
+
+    <div class="col-md-1 add-feedback">
+      <a href="#">Add Feedback</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2 feedback-summary">
+    </div>
+
+    <div class="col-md-9">
+    </div>
+
+    <div class="col-md-1 add-feedback">
+      <a href="#">Add Feedback</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2 feedback-summary">
+    </div>
+
+    <div class="col-md-9">
+    </div>
+
+    <div class="col-md-1 add-feedback">
+      <a href="#">Add Feedback</a>
+    </div>
+  </div>
+
+<footer>
+  <div class="row">
+  </div>
+</footer>
+</div>
+
 </body>
 </html>

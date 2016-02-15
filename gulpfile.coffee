@@ -7,6 +7,7 @@ concat      = require('gulp-concat')
 del         = require('del')
 es          = require('event-stream')
 gutil       = require('gulp-util')
+less        = require('gulp-less')
 lrhttp      = require('lr-http-server')
 order       = require('gulp-order')
 path        = require('path')
@@ -19,6 +20,7 @@ paths =
     cjsx: ['src/cjsx/**/*.cjsx']
     coffee: ['src/coffee/**/*.coffee']
     data: 'data/*.json'
+    less: ['src/less/**']
 
 ports =
     dev: 8999
@@ -41,7 +43,9 @@ gulp.task 'build', [
 # TODO: gulp-changed if things get slow
 gulp.task 'watch', ->
     gulp.watch(paths.cjsx.concat(paths.coffee), ['coffee'])
+    gulp.watch(paths.less, ['less'])
     gulp.watch(paths.static, ['static'])
+
 
 gulp.task 'bower', ->
     gulp.src(bowerFiles(), base: paths.bower)
@@ -49,6 +53,12 @@ gulp.task 'bower', ->
 
     gulp.src('bower_components/react/JSXTransformer.js', base: 'bower_components')
         .pipe(gulp.dest(paths.dist()))
+
+
+gulp.task 'less', ->
+    gulp.src(paths.less)
+        .pipe(less())
+        .pipe(gulp.dest(paths.dist('css')))
 
 
 gulp.task 'examples', ->
